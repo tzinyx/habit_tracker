@@ -130,7 +130,7 @@ export function HabitCard({
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={onDelete}
-                className="text-destructive focus:text-destructive"
+                className="text-black focus:text-black dark:text-white dark:focus:text-white"
               >
                 <Trash2 className="size-4" />
                 Delete

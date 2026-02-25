@@ -1,438 +1,43 @@
 {
   "habits": [
     {
-      "id": "demo-reading",
-      "name": "Read for 30 min",
-      "icon": "book",
+      "id": "0288p09mq",
+      "name": "dasf",
+      "icon": "pill",
       "color": "#2d8a5e",
       "category": "personal",
       "frequency": "daily",
       "reminderEnabled": true,
-      "reminderTime": "08:00",
-      "createdAt": "2026-01-20T16:00:00.000Z"
+      "reminderTime": "13:54",
+      "createdAt": "2026-02-25T05:47:38.324Z"
     },
     {
-      "id": "demo-gym",
-      "name": "Gym Workout",
-      "icon": "dumbbell",
-      "color": "#ef4444",
-      "category": "health",
-      "frequency": "weekdays",
-      "reminderEnabled": true,
-      "reminderTime": "07:00",
-      "createdAt": "2026-01-20T16:00:00.000Z"
-    },
-    {
-      "id": "demo-water",
-      "name": "Drink 8 glasses",
-      "icon": "droplets",
-      "color": "#3b82f6",
-      "category": "health",
-      "frequency": "daily",
-      "reminderEnabled": false,
-      "createdAt": "2026-01-20T16:00:00.000Z"
-    },
-    {
-      "id": "demo-coding",
-      "name": "Code 1 hour",
-      "icon": "code",
+      "id": "finn0c1d5",
+      "name": "dad",
+      "icon": "coffee",
       "color": "#a855f7",
-      "category": "work",
+      "category": "personal",
       "frequency": "daily",
       "reminderEnabled": true,
-      "reminderTime": "10:00",
-      "createdAt": "2026-01-20T16:00:00.000Z"
+      "reminderTime": "01:49",
+      "createdAt": "2026-02-25T05:49:33.941Z"
+    },
+    {
+      "id": "4ons469bs",
+      "name": "dad",
+      "icon": "bike",
+      "color": "#ef4444",
+      "category": "personal",
+      "frequency": "daily",
+      "reminderEnabled": true,
+      "reminderTime": "13:50",
+      "createdAt": "2026-02-25T05:49:50.279Z"
     }
   ],
-  "completions": [
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-25"
-    },
-    {
-      "habitId": "demo-gym",
-      "date": "2026-02-25"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-25"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-02-25"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-24"
-    },
-    {
-      "habitId": "demo-gym",
-      "date": "2026-02-24"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-24"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-02-24"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-23"
-    },
-    {
-      "habitId": "demo-gym",
-      "date": "2026-02-23"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-23"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-02-23"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-22"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-22"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-02-22"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-21"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-21"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-02-21"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-20"
-    },
-    {
-      "habitId": "demo-gym",
-      "date": "2026-02-20"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-20"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-02-20"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-19"
-    },
-    {
-      "habitId": "demo-gym",
-      "date": "2026-02-19"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-19"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-02-19"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-18"
-    },
-    {
-      "habitId": "demo-gym",
-      "date": "2026-02-18"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-18"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-17"
-    },
-    {
-      "habitId": "demo-gym",
-      "date": "2026-02-17"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-17"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-02-17"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-16"
-    },
-    {
-      "habitId": "demo-gym",
-      "date": "2026-02-16"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-16"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-02-16"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-15"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-15"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-02-15"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-14"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-14"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-02-14"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-13"
-    },
-    {
-      "habitId": "demo-gym",
-      "date": "2026-02-13"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-13"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-12"
-    },
-    {
-      "habitId": "demo-gym",
-      "date": "2026-02-12"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-12"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-11"
-    },
-    {
-      "habitId": "demo-gym",
-      "date": "2026-02-11"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-11"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-10"
-    },
-    {
-      "habitId": "demo-gym",
-      "date": "2026-02-10"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-10"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-02-10"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-09"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-02-09"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-08"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-07"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-07"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-06"
-    },
-    {
-      "habitId": "demo-gym",
-      "date": "2026-02-06"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-06"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-02-06"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-05"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-02-05"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-04"
-    },
-    {
-      "habitId": "demo-gym",
-      "date": "2026-02-04"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-04"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-02-04"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-03"
-    },
-    {
-      "habitId": "demo-gym",
-      "date": "2026-02-03"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-03"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-02-03"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-02-02"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-02"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-02-02"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-02-01"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-01-31"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-01-31"
-    },
-    {
-      "habitId": "demo-gym",
-      "date": "2026-01-30"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-01-30"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-01-30"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-01-29"
-    },
-    {
-      "habitId": "demo-gym",
-      "date": "2026-01-29"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-01-29"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-01-29"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-01-28"
-    },
-    {
-      "habitId": "demo-gym",
-      "date": "2026-01-28"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-01-28"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-01-28"
-    },
-    {
-      "habitId": "demo-reading",
-      "date": "2026-01-27"
-    },
-    {
-      "habitId": "demo-gym",
-      "date": "2026-01-27"
-    },
-    {
-      "habitId": "demo-water",
-      "date": "2026-01-27"
-    },
-    {
-      "habitId": "demo-coding",
-      "date": "2026-01-27"
-    }
-  ],
+  "completions": [],
   "plant": {
-    "xp": 120,
-    "stage": "tree",
+    "xp": 4,
+    "stage": "seed",
     "lastWatered": "2026-02-25",
     "isWilted": false
   },
@@ -442,21 +47,25 @@
       "name": "First Step",
       "description": "Complete your first habit",
       "icon": "footprints",
-      "unlockedAt": "2026-01-26T16:00:00.000Z"
+      "unlockedAt": "2026-02-25T05:41:11.939Z"
     },
     {
       "id": "consistent-3",
       "name": "Getting Started",
       "description": "Maintain a 3-day streak",
-      "icon": "flame",
-      "unlockedAt": "2026-01-28T16:00:00.000Z"
+      "icon": "flame"
     },
     {
       "id": "consistent-7",
       "name": "Consistent",
       "description": "Maintain a 7-day streak",
-      "icon": "zap",
-      "unlockedAt": "2026-02-04T16:00:00.000Z"
+      "icon": "zap"
+    },
+    {
+      "id": "consistent-30",
+      "name": "Unstoppable",
+      "description": "Maintain a 30-day streak",
+      "icon": "trophy"
     },
     {
       "id": "five-habits",
@@ -469,27 +78,19 @@
       "name": "Perfect Day",
       "description": "Complete all habits in one day",
       "icon": "star",
-      "unlockedAt": "2026-02-19T16:00:00.000Z"
+      "unlockedAt": "2026-02-25T05:41:11.939Z"
     },
     {
       "id": "century",
       "name": "Century",
       "description": "Reach 100 total completions",
-      "icon": "award",
-      "unlockedAt": "2026-02-22T16:00:00.000Z"
+      "icon": "award"
     },
     {
       "id": "gardener",
       "name": "Green Thumb",
       "description": "Grow your plant to a tree",
-      "icon": "tree-pine",
-      "unlockedAt": "2026-02-23T16:00:00.000Z"
-    },
-    {
-      "id": "consistent-30",
-      "name": "Unstoppable",
-      "description": "Maintain a 30-day streak",
-      "icon": "trophy"
+      "icon": "tree-pine"
     }
   ]
 }

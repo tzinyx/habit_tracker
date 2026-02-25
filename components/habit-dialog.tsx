@@ -70,7 +70,7 @@ export function HabitDialog({
     if (!name.trim()) return
 
     onSave({
-      id: habit?.id || crypto.randomUUID(),
+      id: habit?.id || Math.random().toString(36).substring(2, 11),
       name: name.trim(),
       icon,
       color,

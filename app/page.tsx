@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useCallback, useEffect } from 'react'
+import { useState, useMemo, useCallback, useEffect, useRef } from 'react'
 import { toast } from 'sonner'
 import { useHabits, formatDate } from '@/lib/use-habits'
 import { AppHeader } from '@/components/app-header'
@@ -138,6 +138,7 @@ export default function HabitTrackerPage() {
     setEditingHabit(habit)
     setDialogOpen(true)
   }
+  const lastNotifiedMinuteRef = useRef<string | null>(null)
 
   // Notification reminder check
   useEffect(() => {
@@ -147,6 +148,9 @@ export default function HabitTrackerPage() {
       const now = new Date()
       const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`
 
+      if (lastNotifiedMinuteRef.current === currentTime) return
+
+      let notified = false
       for (const habit of habits) {
         if (
           habit.reminderEnabled &&
@@ -158,12 +162,17 @@ export default function HabitTrackerPage() {
               body: `Time to complete: ${habit.name}`,
               icon: '/icon.svg',
             })
+            notified = true
           }
         }
       }
+
+      if (notified) {
+        lastNotifiedMinuteRef.current = currentTime
+      }
     }
 
-    const interval = setInterval(checkReminders, 60000)
+    const interval = setInterval(checkReminders, 1000)
     return () => clearInterval(interval)
   }, [habits, isCompleted, todayStr])
 
