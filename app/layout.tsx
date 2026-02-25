@@ -13,7 +13,7 @@ const _spaceMono = Space_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Stride - Daily Habit Tracker',
+  title: 'Stride: Daily Habit Tracker',
   description:
     'Track your daily habits, build streaks, and stay consistent with Stride.',
   generator: 'v0.app',
