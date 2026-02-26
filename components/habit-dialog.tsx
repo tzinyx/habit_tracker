@@ -288,20 +288,20 @@ export function HabitDialog({
                 <SelectItem value="daily">Every day</SelectItem>
                 <SelectItem value="weekdays">Weekdays only</SelectItem>
                 <SelectItem value="weekends">Weekends only</SelectItem>
-                <SelectItem value="custom">Specific days</SelectItem>
+                <SelectItem value="custom">Specific days of the week</SelectItem>
               </SelectContent>
             </Select>
 
             {frequency === 'custom' && (
               <div className="mt-2 flex justify-between gap-1">
                 {[
-                  { value: 1, label: 'M' },
-                  { value: 2, label: 'T' },
-                  { value: 3, label: 'W' },
-                  { value: 4, label: 'T' },
-                  { value: 5, label: 'F' },
-                  { value: 6, label: 'S' },
-                  { value: 0, label: 'S' },
+                  { value: 1, label: 'Mon' },
+                  { value: 2, label: 'Tue' },
+                  { value: 3, label: 'Wed' },
+                  { value: 4, label: 'Thu' },
+                  { value: 5, label: 'Fri' },
+                  { value: 6, label: 'Sat' },
+                  { value: 0, label: 'Sun' },
                 ].map((day) => (
                   <button
                     key={'day-' + day.value}
@@ -314,7 +314,7 @@ export function HabitDialog({
                       }
                     }}
                     className={cn(
-                      'flex size-9 items-center justify-center rounded-full border text-sm font-medium transition-all',
+                      'flex h-9 px-3 items-center justify-center rounded-md border text-sm font-medium transition-all',
                       customDays.includes(day.value)
                         ? 'border-primary bg-primary text-primary-foreground'
                         : 'border-border bg-card text-muted-foreground hover:bg-secondary',
