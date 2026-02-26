@@ -38,7 +38,7 @@ export function HabitCard({
   onDelete,
   weekCompletions,
 }: HabitCardProps) {
-  const categoryStyle = CATEGORY_COLORS[habit.category] || CATEGORY_COLORS.personal
+  const categoryStyle = CATEGORY_COLORS[habit.category] || CATEGORY_COLORS.other
 
   return (
     <div

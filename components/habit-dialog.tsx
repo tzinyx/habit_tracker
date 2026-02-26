@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
+import { Check, ChevronsUpDown } from 'lucide-react'
 import {
   Dialog,
   DialogContent,
@@ -20,6 +21,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from '@/components/ui/command'
 import { cn } from '@/lib/utils'
 import { HabitIcon } from '@/components/habit-icon'
 import type { Habit, HabitCategory } from '@/lib/types'
@@ -29,6 +43,7 @@ interface HabitDialogProps {
   open: boolean
   onOpenChange: (open: boolean) => void
   habit?: Habit | null
+  habits?: Habit[]
   onSave: (habit: Habit) => void
 }
 
@@ -36,13 +51,37 @@ export function HabitDialog({
   open,
   onOpenChange,
   habit,
+  habits = [],
   onSave,
 }: HabitDialogProps) {
   const [name, setName] = useState('')
   const [icon, setIcon] = useState('book')
   const [color, setColor] = useState(HABIT_COLORS[0])
   const [category, setCategory] = useState<HabitCategory>('personal')
+  const [customCategory, setCustomCategory] = useState('')
+  const [comboboxOpen, setComboboxOpen] = useState(false)
+
+  const existingCustomCategories = useMemo(() => {
+    const predefinedKeys = new Set(HABIT_CATEGORIES.map((cat) => cat.value))
+    const custom = new Set<string>()
+    for (const h of habits || []) {
+      if (h.category && h.category !== 'other' && !predefinedKeys.has(h.category)) {
+        custom.add(h.category)
+      }
+    }
+    if (habit && habit.category && habit.category !== 'other' && !predefinedKeys.has(habit.category)) {
+      custom.add(habit.category)
+    }
+    return Array.from(custom)
+  }, [habits, habit])
+
+  const allCategories = useMemo(() => {
+    const defaultCats = HABIT_CATEGORIES.filter((c) => c.value !== 'other')
+    const userCats = existingCustomCategories.map((cat) => ({ value: cat, label: cat }))
+    return [{ value: 'other', label: 'Others (Type new...)' }, ...defaultCats, ...userCats]
+  }, [existingCustomCategories])
   const [frequency, setFrequency] = useState<Habit['frequency']>('daily')
+  const [customDays, setCustomDays] = useState<number[]>([])
   const [reminderEnabled, setReminderEnabled] = useState(false)
   const [reminderTime, setReminderTime] = useState('09:00')
 
@@ -51,8 +90,18 @@ export function HabitDialog({
       setName(habit.name)
       setIcon(habit.icon)
       setColor(habit.color)
-      setCategory(habit.category || 'personal')
+      const isPredefined = HABIT_CATEGORIES.some(c => c.value === habit.category)
+      const isCustom = !isPredefined && habit.category && habit.category !== 'other'
+
+      if (isPredefined || isCustom) {
+        setCategory(habit.category || 'personal')
+        setCustomCategory('')
+      } else {
+        setCategory('other')
+        setCustomCategory(habit.category || '')
+      }
       setFrequency(habit.frequency)
+      setCustomDays(habit.customDays || [])
       setReminderEnabled(habit.reminderEnabled)
       setReminderTime(habit.reminderTime || '09:00')
     } else {
@@ -60,7 +109,9 @@ export function HabitDialog({
       setIcon('book')
       setColor(HABIT_COLORS[0])
       setCategory('personal')
+      setCustomCategory('')
       setFrequency('daily')
+      setCustomDays([])
       setReminderEnabled(false)
       setReminderTime('09:00')
     }
@@ -69,13 +120,18 @@ export function HabitDialog({
   const handleSave = () => {
     if (!name.trim()) return
 
+    const finalCategory = category === 'other' && customCategory.trim()
+      ? customCategory.trim()
+      : category
+
     onSave({
       id: habit?.id || Math.random().toString(36).substring(2, 11),
       name: name.trim(),
       icon,
       color,
-      category,
+      category: finalCategory,
       frequency,
+      customDays: frequency === 'custom' ? customDays : undefined,
       reminderEnabled,
       reminderTime: reminderEnabled ? reminderTime : undefined,
       createdAt: habit?.createdAt || new Date().toISOString(),
@@ -108,22 +164,64 @@ export function HabitDialog({
           </div>
 
           <div className="flex flex-col gap-2">
-            <Label htmlFor="category">Category</Label>
-            <Select
-              value={category}
-              onValueChange={(v) => setCategory(v as HabitCategory)}
-            >
-              <SelectTrigger id="category">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {HABIT_CATEGORIES.map((cat) => (
-                  <SelectItem key={cat.value} value={cat.value}>
-                    {cat.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <Label>Category</Label>
+            <Popover open={comboboxOpen} onOpenChange={setComboboxOpen}>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  role="combobox"
+                  aria-expanded={comboboxOpen}
+                  className="w-full justify-between font-normal"
+                >
+                  {category
+                    ? allCategories.find((cat) => cat.value === category)?.label || category
+                    : 'Select category...'}
+                  <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-full p-0" align="start">
+                <Command>
+                  <CommandInput placeholder="Search categories..." />
+                  <CommandList
+                    className="max-h-[200px] overflow-y-auto overflow-x-hidden"
+                    onWheel={(e) => e.stopPropagation()}
+                  >
+                    <CommandEmpty>No category found.</CommandEmpty>
+                    <CommandGroup>
+                      {allCategories.map((cat) => (
+                        <CommandItem
+                          key={cat.value}
+                          value={cat.value}
+                          onSelect={(currentValue) => {
+                            setCategory(currentValue as HabitCategory)
+                            if (currentValue !== 'other') setCustomCategory('')
+                            setComboboxOpen(false)
+                          }}
+                        >
+                          <Check
+                            className={cn(
+                              'mr-2 size-4',
+                              category === cat.value ? 'opacity-100' : 'opacity-0',
+                            )}
+                          />
+                          {cat.label}
+                        </CommandItem>
+                      ))}
+                    </CommandGroup>
+                  </CommandList>
+                </Command>
+              </PopoverContent>
+            </Popover>
+
+            {category === 'other' && (
+              <Input
+                placeholder="Enter custom category name"
+                value={customCategory}
+                onChange={(e) => setCustomCategory(e.target.value)}
+                className="mt-2"
+                autoFocus
+              />
+            )}
           </div>
 
           <div className="flex flex-col gap-2">
@@ -178,7 +276,10 @@ export function HabitDialog({
             <Label htmlFor="frequency">Frequency</Label>
             <Select
               value={frequency}
-              onValueChange={(v) => setFrequency(v as Habit['frequency'])}
+              onValueChange={(v) => {
+                setFrequency(v as Habit['frequency'])
+                if (v !== 'custom') setCustomDays([])
+              }}
             >
               <SelectTrigger id="frequency">
                 <SelectValue />
@@ -187,8 +288,44 @@ export function HabitDialog({
                 <SelectItem value="daily">Every day</SelectItem>
                 <SelectItem value="weekdays">Weekdays only</SelectItem>
                 <SelectItem value="weekends">Weekends only</SelectItem>
+                <SelectItem value="custom">Specific days</SelectItem>
               </SelectContent>
             </Select>
+
+            {frequency === 'custom' && (
+              <div className="mt-2 flex justify-between gap-1">
+                {[
+                  { value: 1, label: 'M' },
+                  { value: 2, label: 'T' },
+                  { value: 3, label: 'W' },
+                  { value: 4, label: 'T' },
+                  { value: 5, label: 'F' },
+                  { value: 6, label: 'S' },
+                  { value: 0, label: 'S' },
+                ].map((day) => (
+                  <button
+                    key={'day-' + day.value}
+                    type="button"
+                    onClick={() => {
+                      if (customDays.includes(day.value)) {
+                        setCustomDays(customDays.filter((d) => d !== day.value))
+                      } else {
+                        setCustomDays([...customDays, day.value])
+                      }
+                    }}
+                    className={cn(
+                      'flex size-9 items-center justify-center rounded-full border text-sm font-medium transition-all',
+                      customDays.includes(day.value)
+                        ? 'border-primary bg-primary text-primary-foreground'
+                        : 'border-border bg-card text-muted-foreground hover:bg-secondary',
+                    )}
+                    aria-label={`Toggle day ${day.label}`}
+                  >
+                    {day.label}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="flex items-center justify-between rounded-lg border bg-secondary/50 p-3">

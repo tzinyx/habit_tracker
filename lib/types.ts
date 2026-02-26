@@ -1,4 +1,4 @@
-export type HabitCategory = 'health' | 'work' | 'personal' | 'finance'
+export type HabitCategory = 'health' | 'work' | 'personal' | 'finance' | 'other' | (string & {})
 
 export interface Habit {
   id: string
@@ -47,13 +47,15 @@ export const HABIT_CATEGORIES: { value: HabitCategory; label: string }[] = [
   { value: 'work', label: 'Work' },
   { value: 'personal', label: 'Personal' },
   { value: 'finance', label: 'Finance' },
+  { value: 'other', label: 'Others' },
 ]
 
-export const CATEGORY_COLORS: Record<HabitCategory, string> = {
+export const CATEGORY_COLORS: Record<string, string> = {
   health: 'bg-chart-1/15 text-chart-1',
   work: 'bg-chart-3/15 text-chart-3',
   personal: 'bg-chart-2/15 text-chart-2',
   finance: 'bg-chart-5/15 text-chart-5',
+  other: 'bg-muted text-muted-foreground',
 }
 
 export const HABIT_ICONS = [

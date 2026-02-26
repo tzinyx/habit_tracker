@@ -116,7 +116,8 @@ function generateDemoData(): HabitData {
       icon: 'dumbbell',
       color: '#ef4444',
       category: 'health',
-      frequency: 'weekdays',
+      frequency: 'custom',
+      customDays: [1, 3, 5],
       reminderEnabled: true,
       reminderTime: '07:00',
       createdAt: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 35).toISOString(),
@@ -142,6 +143,17 @@ function generateDemoData(): HabitData {
       reminderTime: '10:00',
       createdAt: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 35).toISOString(),
     },
+    {
+      id: 'demo-meditation',
+      name: '15m Meditation',
+      icon: 'brain',
+      color: '#f59e0b',
+      category: 'Spirituality',
+      frequency: 'custom',
+      customDays: [0, 6],
+      reminderEnabled: false,
+      createdAt: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 35).toISOString(),
+    },
   ]
 
   const completions: Completion[] = []
@@ -156,10 +168,10 @@ function generateDemoData(): HabitData {
       completions.push({ habitId: 'demo-reading', date: dateStr })
     }
 
-    // Gym: weekdays only, ~80%
+    // Gym: Custom days (M, W, F)
     const dayOfWeek = d.getDay()
-    if (dayOfWeek !== 0 && dayOfWeek !== 6) {
-      if (i <= 8 || Math.random() < 0.7) {
+    if (dayOfWeek === 1 || dayOfWeek === 3 || dayOfWeek === 5) {
+      if (i <= 8 || Math.random() < 0.8) {
         completions.push({ habitId: 'demo-gym', date: dateStr })
       }
     }
@@ -172,6 +184,13 @@ function generateDemoData(): HabitData {
     // Coding: moderate consistency, 70%
     if (i <= 5 || Math.random() < 0.6) {
       completions.push({ habitId: 'demo-coding', date: dateStr })
+    }
+
+    // Meditation: Custom days (Weekends)
+    if (dayOfWeek === 0 || dayOfWeek === 6) {
+      if (i <= 10 || Math.random() < 0.9) {
+        completions.push({ habitId: 'demo-meditation', date: dateStr })
+      }
     }
   }
 

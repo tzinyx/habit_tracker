@@ -297,6 +297,7 @@ export default function HabitTrackerPage() {
         open={dialogOpen}
         onOpenChange={setDialogOpen}
         habit={editingHabit}
+        habits={habits}
         onSave={handleSaveHabit}
       />
 
